@@ -1,13 +1,10 @@
-import sys
-from matplotlib import pyplot as plt
-import numpy as np
 import cv2 as cv
 from utils import Utils, MAX_RANGE
-import copy
 
-initial_x, initial_y, final_x, final_y = (0,0,0,0)
+initial_x, initial_y, final_x, final_y = (0, 0, 0, 0)
 
-class OutlineOne():
+
+class FormulationOne:
     @staticmethod
     def one():
         img = Utils.load_lenna_image()
@@ -23,6 +20,7 @@ class OutlineOne():
     @staticmethod
     def three(frame_size=13):
         img = Utils.load_lenna_image()
+
         def draw_rectangle(event, x, y, flags, param):
             blue = img[y, x, 0]
             green = img[y, x, 1]
@@ -31,10 +29,10 @@ class OutlineOne():
             initial_x, initial_y = (x - frame_size, y - frame_size)
             final_x, final_y = (x + frame_size, y + frame_size)
             # Because slicing is [inclusive:exclusive], we need the +1.
-            my_frame = img[initial_x:final_x+1, initial_y:final_y+1]
+            my_frame = img[initial_x:final_x + 1, initial_y:final_y + 1]
             print(
                 f'Cusor at: ({x},{y}). BGR values: ({blue}, {green}, {red}). Intensity value: {Utils.get_intensity_value(blue, green, red)}')
-            print(f'Average grey level: {round(my_frame.mean(),3)}. Standard deviation: {round(my_frame.std(), 3)}')
+            print(f'Average grey level: {round(my_frame.mean(), 3)}. Standard deviation: {round(my_frame.std(), 3)}')
 
         cv.namedWindow('Lenna')
         cv.setMouseCallback('Lenna', draw_rectangle)
@@ -60,4 +58,4 @@ class OutlineOne():
         more homogeneous the frame is. That is because, when we have a low standard deviation, the specific value does
         not differ too much from the average, thus leading to a homogeneous frame.
         """
-        print('The discussion for the item 1.4 is at the docstring of the method OutlineOne.four()')
+        print('The discussion for the item 1.4 is at the docstring of the method FormulationOne.four()')
