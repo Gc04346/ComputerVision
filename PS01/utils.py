@@ -1,3 +1,4 @@
+import cmath
 import sys
 from matplotlib import pyplot as plt
 import cv2 as cv
@@ -61,3 +62,10 @@ class Utils:
         if dp_shifted:
             image = np.fft.ifftshift(image)
         return np.real(np.fft.ifft2(image))
+
+    @staticmethod
+    def get_image_in_polar_coords(image):
+        return [
+            [cmath.polar(complex_number) for _, complex_number in enumerate(complex_group)]
+            for _, complex_group in enumerate(image)
+        ]

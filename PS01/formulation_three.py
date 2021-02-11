@@ -25,18 +25,12 @@ class FormulationThree:
         frequency_lenna = Utils.get_image_in_frequency_domain(lenna)
 
         # pega as coordenadas polares da lenna (amplitude, fase)
-        lenna_polar = [
-            [cmath.polar(complex_number) for _, complex_number in enumerate(complex_group)]
-            for _, complex_group in enumerate(frequency_lenna)
-        ]
+        lenna_polar = Utils.get_image_in_polar_coords(frequency_lenna)
 
         # faz o mesmo que fez pro baboon
         baboon = Utils.load_baboon_image(GRAYSCALE_IMAGE)
         frequency_baboon = Utils.get_image_in_frequency_domain(baboon)
-        baboon_polar = [
-            [cmath.polar(complex_number) for _, complex_number in enumerate(complex_group)]
-            for _, complex_group in enumerate(frequency_baboon)
-        ]
+        baboon_polar = Utils.get_image_in_polar_coords(frequency_baboon)
 
         # a imagem resultante pega a amplitude da primeira imagem com a fase da segunda. por isso os indices 0 e 1 res-
         # pectivamente no complex_number que representa a imagem da lenna e no baboon_polar
