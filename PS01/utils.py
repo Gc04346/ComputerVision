@@ -47,3 +47,17 @@ class Utils:
                 m = np.mean(block, dtype=np.float32)
                 img[i][j] = int(m)
         return img
+
+    @staticmethod
+    def get_image_in_frequency_domain(image, dp_shifted:bool = True):
+        frequency_img = np.fft.fft2(image)
+        if dp_shifted:
+            # deslocando o 00 para o centro
+            frequency_img = np.fft.fftshift(frequency_img)
+        return frequency_img
+
+    @staticmethod
+    def get_image_in_spatial_domain(image, dp_shifted:bool = True):
+        if dp_shifted:
+            image = np.fft.ifftshift(image)
+        return np.real(np.fft.ifft2(image))

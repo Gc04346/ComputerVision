@@ -22,35 +22,29 @@ class FormulationThree:
     @staticmethod
     def one():
         lenna = Utils.load_lenna_image(GRAYSCALE_IMAGE)
-        frequency_lenna = np.fft.fft2(lenna)
-
-        # deslocando o 00 para o centro
-        fshift_lenna = np.fft.fftshift(frequency_lenna)
+        frequency_lenna = Utils.get_image_in_frequency_domain(lenna)
 
         # pega as coordenadas polares da lenna (amplitude, fase)
         lenna_polar = [
             [cmath.polar(complex_number) for _, complex_number in enumerate(complex_group)]
-            for _, complex_group in enumerate(fshift_lenna)
+            for _, complex_group in enumerate(frequency_lenna)
         ]
 
         # faz o mesmo que fez pro baboon
         baboon = Utils.load_baboon_image(GRAYSCALE_IMAGE)
-        frequency_baboon = np.fft.fft2(baboon)
-        fshift_baboon = np.fft.fftshift(frequency_baboon)
+        frequency_baboon = Utils.get_image_in_frequency_domain(baboon)
         baboon_polar = [
             [cmath.polar(complex_number) for _, complex_number in enumerate(complex_group)]
-            for _, complex_group in enumerate(fshift_baboon)
+            for _, complex_group in enumerate(frequency_baboon)
         ]
 
         # a imagem resultante pega a amplitude da primeira imagem com a fase da segunda. por isso os indices 0 e 1 res-
-        # pectivamente no complex_number que representa a imagem da lenna e no baboon_polar que representa a outra img
+        # pectivamente no complex_number que representa a imagem da lenna e no baboon_polar
         resulting_image = [
             [cmath.rect(complex_number[0], baboon_polar[i][j][1]) for j, complex_number in enumerate(complex_group)]
             for i, complex_group in enumerate(lenna_polar)
         ]
-        resulting_image_unshifted = np.fft.ifftshift(resulting_image)
-        resulting_image = np.fft.ifft2(resulting_image_unshifted)
-        resulting_image = np.real(resulting_image)
+        resulting_image = Utils.get_image_in_spatial_domain(resulting_image)
         cv.imshow('Resulting image', resulting_image)
         cv.waitKey(0)
         cv.destroyAllWindows()
