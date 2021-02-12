@@ -7,4 +7,5 @@ from formulation_three import FormulationThree
 # FormulationOne.three()
 
 # FormulationThree tasks
-FormulationThree.one()
+# FormulationThree.a()
+FormulationThree.b()

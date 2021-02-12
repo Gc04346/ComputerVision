@@ -7,19 +7,19 @@ initial_x, initial_y, final_x, final_y = (0, 0, 0, 0)
 class FormulationOne:
     @staticmethod
     def one():
-        img = Utils.load_lenna_image()
+        img = Utils.load_image('lenna.png')
         cv.imshow('Lenna', img)
         cv.waitKey(0)
         cv.destroyAllWindows()
 
     @staticmethod
     def two():
-        img = Utils.load_lenna_image()
+        img = Utils.load_image('lenna.png')
         Utils.show_histogram(img)
 
     @staticmethod
     def three(frame_size=13):
-        img = Utils.load_lenna_image()
+        img = Utils.load_image('lenna.png')
 
         def draw_rectangle(event, x, y, flags, param):
             blue = img[y, x, 0]
@@ -41,7 +41,7 @@ class FormulationOne:
             frame = img
             cv.rectangle(img, (initial_x, initial_y), (final_x, final_y), (MAX_RANGE, MAX_RANGE, MAX_RANGE), 1)
             cv.imshow('Lenna', frame)
-            img = Utils.load_lenna_image()
+            img = Utils.load_image('lenna.png')
             k = cv.waitKey(1) & 0xFF
             if k == 27:
                 break

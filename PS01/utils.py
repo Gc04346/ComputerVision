@@ -11,17 +11,10 @@ GRAYSCALE_IMAGE = 0
 class Utils:
 
     @staticmethod
-    def load_lenna_image(grayscale=None):
-        img = cv.imread('../imgs/lenna.png', grayscale)
+    def load_image(filename: str, grayscale=None):
+        img = cv.imread(f'../imgs/{filename}', grayscale)
         if img is None:
-            sys.exit('Lenna não carregou corretamente')
-        return img
-
-    @staticmethod
-    def load_baboon_image(grayscale=None):
-        img = cv.imread('../imgs/baboon.png', grayscale)
-        if img is None:
-            sys.exit('Baboon não carregou corretamente')
+            sys.exit('A imagem não carregou corretamente')
         return img
 
     @staticmethod
