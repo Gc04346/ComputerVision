@@ -62,3 +62,25 @@ class Utils:
             [cmath.polar(complex_number) for _, complex_number in enumerate(complex_group)]
             for _, complex_group in enumerate(image)
         ]
+
+    @staticmethod
+    def load_video(filename: str):
+        vid = cv.VideoCapture(f'../vids/{filename}')
+        if vid is None:
+            sys.exit('O vídeo não carregou corretamente.')
+        return vid
+
+    @staticmethod
+    def play_video(video):
+        success: bool = True
+        while success:
+            success, frame = video.read()
+            if success:
+                gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+
+                cv.imshow('frame', gray)
+            if cv.waitKey(1) & 0xFF == ord('q'):
+                break
+
+        video.release()
+        cv.destroyAllWindows()

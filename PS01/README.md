@@ -45,7 +45,19 @@ To discuss homogeneousity and inhomogeneousity in our case, it would be best to 
 "
 
 ### Formulation 02
+For this exercise, a sample mp4 video was obtained from the internet, and saved on the project repository with the name
+`star.mp4`. The first task was to read an input capture of at least 50 frames. As we can see with `FormulationTwo.a`
+method, the chosen capture has 835 frames.
 
+The three data measures chosen were the mean, standard deviation and contrast of each frame. Those values were calculated
+with Python's built-in `mean()` and `std()` methods, and OpenCV's `cvtColor` color method combined with `std()` to obtain
+the contrast. A numpy array was used to store these values in order to simplify the next step, which was normalizing all
+three of these functions. After the normalization, the L1 metric was used to compare the distance between the normalized
+standard deviation and contrast functions from the mean.
+
+As this was a more theoretical exercise, we cannot actually see any solid results, differently from the other formulations.
+It is noticeable, though, that the normalized contrast was closer to the mean, with a distance of 10.72, in comparison
+with 30.03 which was the distance between the mean and the normalized standard deviation.
 
 ### Formulation 03
 Python's Numpy library provides methods to calculate the 2D DFT and inverse 2D DFT. Those methods are `numpy.fft.fft2`
