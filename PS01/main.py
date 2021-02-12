@@ -11,8 +11,8 @@ from formulation_three import FormulationThree
 # FormulationTwo.a()
 # FormulationTwo.b()
 # FormulationTwo.c()
-FormulationTwo.d()
+# FormulationTwo.d()
 
 # FormulationThree tasks
-# FormulationThree.a()
+FormulationThree.a()
 # FormulationThree.b()

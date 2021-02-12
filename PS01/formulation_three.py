@@ -46,47 +46,48 @@ class FormulationThree:
     @staticmethod
     def b():
         grass = Utils.load_image('grass.jpg', GRAYSCALE_IMAGE)
-        night_sky = Utils.load_image('night_sky.jpg', GRAYSCALE_IMAGE)
-        tulips = Utils.load_image('tulips.jpg', GRAYSCALE_IMAGE)
-        water = Utils.load_image('water.jpg', GRAYSCALE_IMAGE)
+        cv.imshow('Grass - Amplitude divided by 2', grass)
+        cv.waitKey(0)
+        cv.destroyAllWindows()
+        # night_sky = Utils.load_image('night_sky.jpg', GRAYSCALE_IMAGE)
+        # tulips = Utils.load_image('tulips.jpg', GRAYSCALE_IMAGE)
+        # water = Utils.load_image('water.jpg', GRAYSCALE_IMAGE)
 
         grass_frequency = Utils.get_image_in_frequency_domain(grass)
-        night_sky_frequency = Utils.get_image_in_frequency_domain(night_sky)
-        tulips_frequency = Utils.get_image_in_frequency_domain(tulips)
-        water_frequency = Utils.get_image_in_frequency_domain(water)
+        # night_sky_frequency = Utils.get_image_in_frequency_domain(night_sky)
+        # tulips_frequency = Utils.get_image_in_frequency_domain(tulips)
+        # water_frequency = Utils.get_image_in_frequency_domain(water)
 
         grass_frequency_polar = Utils.get_image_in_polar_coords(grass_frequency)
-        night_sky_frequency_polar = Utils.get_image_in_polar_coords(night_sky_frequency)
-        tulips_frequency_polar = Utils.get_image_in_polar_coords(tulips_frequency)
-        water_frequency_polar = Utils.get_image_in_polar_coords(water_frequency)
+        # night_sky_frequency_polar = Utils.get_image_in_polar_coords(night_sky_frequency)
+        # tulips_frequency_polar = Utils.get_image_in_polar_coords(tulips_frequency)
+        # water_frequency_polar = Utils.get_image_in_polar_coords(water_frequency)
 
-        print(len(grass_frequency_polar))
         # dividindo a amplitude por 2
         for complex_group in grass_frequency_polar:
             transformed_coords = (complex_group[0][0] * 0.5, complex_group[0][1])
             complex_group[0] = transformed_coords
-        print(len(grass_frequency_polar))
         # multiplicando a amplitude por -1
-        for complex_group in night_sky_frequency_polar:
-            transformed_coords = (complex_group[0][0] * -1, complex_group[0][1])
-            complex_group[0] = transformed_coords
-        # dividindo a fase por 2
-        for complex_group in tulips_frequency_polar:
-            transformed_coords = (complex_group[0][0], complex_group[0][1] * 0.5)
-            complex_group[0] = transformed_coords
-        # multiplicando a fase por -1
-        for complex_group in water_frequency_polar:
-            transformed_coords = (complex_group[0][0], complex_group[0][1] * -1)
-            complex_group[0] = transformed_coords
+        # for complex_group in night_sky_frequency_polar:
+        #     transformed_coords = (complex_group[0][0] * -1, complex_group[0][1])
+        #     complex_group[0] = transformed_coords
+        # # dividindo a fase por 2
+        # for complex_group in tulips_frequency_polar:
+        #     transformed_coords = (complex_group[0][0], complex_group[0][1] * 0.5)
+        #     complex_group[0] = transformed_coords
+        # # multiplicando a fase por -1
+        # for complex_group in water_frequency_polar:
+        #     transformed_coords = (complex_group[0][0], complex_group[0][1] * -1)
+        #     complex_group[0] = transformed_coords
 
         grass_back = Utils.get_image_in_spatial_domain(grass_frequency_polar)
-        night_sky_back = Utils.get_image_in_spatial_domain(night_sky_frequency_polar)
-        tulips_back = Utils.get_image_in_spatial_domain(tulips_frequency_polar)
-        water_back = Utils.get_image_in_spatial_domain(water_frequency_polar)
+        # night_sky_back = Utils.get_image_in_spatial_domain(night_sky_frequency_polar)
+        # tulips_back = Utils.get_image_in_spatial_domain(tulips_frequency_polar)
+        # water_back = Utils.get_image_in_spatial_domain(water_frequency_polar)
 
         cv.imshow('Grass - Amplitude divided by 2', grass_back)
-        cv.imshow('Night Sky - Amplitude negative', night_sky_back)
-        cv.imshow('Tulips - Phase divided by 2', tulips_back)
-        cv.imshow('Water - Phase negative', water_back)
+        # cv.imshow('Night Sky - Amplitude negative', night_sky_back)
+        # cv.imshow('Tulips - Phase divided by 2', tulips_back)
+        # cv.imshow('Water - Phase negative', water_back)
         cv.waitKey(0)
         cv.destroyAllWindows()
