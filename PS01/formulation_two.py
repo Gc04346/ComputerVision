@@ -12,7 +12,7 @@ class FormulationTwo:
 
     @staticmethod
     def b():
-        video = Utils.load_video('star.mp4')
+        video = Utils.load_video('bunny.mp4')
 
         # The chosen data measures will be: mean, standard deviation and contrast
         mean = np.array([])
@@ -48,7 +48,7 @@ class FormulationTwo:
             new_mean.append(mean_function[i])
             new_std.append(beta_std_function * (std_function[i] + alpha_std_function))
             new_contrast.append(beta_contrast_function * (contrast_function[i] + alpha_contrast_function))
-        print(f'Mean: {new_mean[:5]}...\n\nStd.: {new_std[:5]}...\n\nContrast: {new_contrast[:5]}...')
+        print(f'Mean: {new_mean[:5]}...\n\nNew Std.: {new_std[:5]}...\n\nNew Contrast: {new_contrast[:5]}...')
         return new_mean, new_std, new_contrast
 
     @staticmethod
@@ -64,5 +64,5 @@ class FormulationTwo:
         std_distance /= len(new_mean)
         contrast_distance /= len(new_mean)
 
-        print(f'new_std\'s distance from the mean: {std_distance}')
-        print(f'new_contrast\'s distance from the mean: {contrast_distance}')
+        print(f'new_std\'s distance from the original std: {std_distance}')
+        print(f'new_contrast\'s distance from the original contrast: {contrast_distance}')

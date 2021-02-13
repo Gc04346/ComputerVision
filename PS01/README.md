@@ -53,11 +53,16 @@ The three data measures chosen were the mean, standard deviation and contrast of
 with Python's built-in `mean()` and `std()` methods, and OpenCV's `cvtColor` color method combined with `std()` to obtain
 the contrast. A numpy array was used to store these values in order to simplify the next step, which was normalizing all
 three of these functions. After the normalization, the L1 metric was used to compare the distance between the normalized
-standard deviation and contrast functions from the mean.
+functions from the original ones.
 
 As this was a more theoretical exercise, we cannot actually see any solid results, differently from the other formulations.
 It is noticeable, though, that the normalized contrast was closer to the mean, with a distance of 10.72, in comparison
-with 30.03 which was the distance between the mean and the normalized standard deviation.
+with 30.03 which was the distance between the mean and the normalized standard deviation. Probably due to the big white 
+blur at the end of `star.mp4`, these distances were bigger than expected. Using the same algorithm with a different video,
+`globe.mp4`, we obtain distances 0.86 and 0.46, which are way better, and in this video we have a tiny portion
+of bright colors. In a third test, with `bunny.mp4`, we see a lot of the color white throughout the video, and the
+distances were the biggest of the three with this algorithm: 84.86 for the standard deviation and 28.28 for the contrast.
+These three tests led me to believe that bright colors impact standard deviation and contrast metrics negatively. 
 
 ### Formulation 03
 Python's Numpy library provides methods to calculate the 2D DFT and inverse 2D DFT. Those methods are `numpy.fft.fft2`

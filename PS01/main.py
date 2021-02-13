@@ -14,5 +14,5 @@ from formulation_three import FormulationThree
 # FormulationTwo.d()
 
 # FormulationThree tasks
-FormulationThree.a()
-# FormulationThree.b()
+# FormulationThree.a()
+FormulationThree.b()
