@@ -79,13 +79,12 @@ discarded, for the image without those makes too much little visual sense.
 
 Task *b* had the intention of showing once again what values were more impactful on an image: the amplitude or the
 phase of each frequency. Four images were chosen for this experiment: a grass field, an ocean, a tulip field and a
-night sky. All of these have homogeneous textures. The experiments and its results were as follows:
-1. The grass field image had its amplitude divided by 2:
-1. The night sky picture had its amplitude multiplied by -1:
-1. The tulip field had its phase divided by 2:
-1. The ocean photo had its phase multiplied by -1:
+night sky. All of these have homogeneous textures. The experiments were as follows:
+1. The grass field image had its amplitude divided by 2;
+1. The night sky picture had its amplitude multiplied by -1;
+1. The tulip field had its phase divided by 2;
+1. The ocean photo had its phase multiplied by -1.
 
-Thus, it is safe to state that the amplitude of the frequency is more sensitive to alterations, because it causes more
-disturbance on the final image, when its brought back to the spatial domain.
+For some reason, the resulting images were only a white frame. I can't say where the algorithm went wrong, and so
+this was an incomplete experiment, what led to task *c* not being executed as well. 
 
-### Formulation 04

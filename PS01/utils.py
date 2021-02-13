@@ -64,6 +64,13 @@ class Utils:
         ]
 
     @staticmethod
+    def get_complex_from_polar(image):
+        return [
+            [cmath.rect(polar_coord[0], polar_coord[1]) for polar_coord in complex_group]
+            for complex_group in image
+        ]
+
+    @staticmethod
     def load_video(filename: str):
         vid = cv.VideoCapture(f'../vids/{filename}')
         if vid is None:
