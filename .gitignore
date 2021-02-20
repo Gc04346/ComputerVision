@@ -1,2 +1,4 @@
 .idea/
 venv/
+__pycache__/
+PS01/__pycache__/
