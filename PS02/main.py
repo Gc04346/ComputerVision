@@ -1,0 +1,3 @@
+from formulation_one import FormulationOne
+
+FormulationOne.sigma_filter_then_histogram_equalization()
