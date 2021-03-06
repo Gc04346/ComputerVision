@@ -1,3 +1,3 @@
 from formulation_one import FormulationOne
 
-FormulationOne.sigma_filter_then_histogram_equalization(r=1)
+FormulationOne.sigma_filter_then_histogram_equalization(r=2)
