@@ -76,4 +76,7 @@ for r = 1 than for r < 1.
 
 ### Formulation 03
 
-Formulation 3 was about edge detection, and comparing how amplitude and phase values
+Formulation 3 was about edge detection, and comparing how amplitude and phase values perform with relation
+to edge highlighting. I had some issues understanding this formulation, regarding what I actually had to do.
+The fact that I had to have two operators caused some confusion, and I had some doubts regarding what pixel
+from the window Wp I had to get to set the values for images M and P.
