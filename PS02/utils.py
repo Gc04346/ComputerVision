@@ -48,6 +48,40 @@ class Utils:
             for x in range(0, image.shape[1], step):
                 yield x, y, image[y:y + window_size[1], x:x + window_size[0]]
 
+    @staticmethod
+    def get_image_in_frequency_domain(image, dp_shifted: bool = True):
+        frequency_img = np.fft.fft2(image)
+        if dp_shifted:
+            # deslocando o 00 para o centro
+            frequency_img = np.fft.fftshift(frequency_img)
+        return frequency_img
+
+    @staticmethod
+    def get_amplitude_and_phase_values_separately(window_freq) -> Tuple[np.uint8, np.uint8]:
+        """
+        Based on an input window Wp, gets the amplitude and phase values from the center pixel p.
+        :param window_freq: current window_freq Wp
+        :return: amplitude and phase values as integers
+        """
+
+        # default values for amplitude and phase
+        amplitude, phase = (0, 0)
+
+        # gets the center position of the current window
+        window_shape = window_freq.shape
+        center_pos_x = window_shape[0] // 2
+        center_pos_y = window_shape[1] // 2
+
+        # window_freq[center_pos_x][center_pos_y] returns a tuple. The approach I chose for separating this tuple con-
+        #  taining a complex number into amplitude and phase values was to turn the tuple into a string and spliting it
+        #  into
+        str_val = str(window_freq[center_pos_x][center_pos_y])
+        if '+' in str_val:
+            amplitude, phase = str_val.split("+")
+        elif '-' in str_val:
+            amplitude, phase = str_val.split('-')
+        return np.uint8(amplitude.replace('(','')), np.uint8(abs((complex(phase.replace(')','')))))
+
 
 class SigmaFilter:
     def __init__(self, k: int, image_shape: Tuple[int, int, int]):

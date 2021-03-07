@@ -75,3 +75,5 @@ when the value reaches 2.
 for r = 1 than for r < 1.
 
 ### Formulation 03
+
+Formulation 3 was about edge detection, and comparing how amplitude and phase values
