@@ -74,7 +74,9 @@ class Utils:
 
         # window_freq[center_pos_x][center_pos_y] returns a tuple. The approach I chose for separating this tuple con-
         #  taining a complex number into amplitude and phase values was to turn the tuple into a string and spliting it
-        #  into
+        #  into two, based on the operator + or - of the complex number. Then i had to remove the parenthesis that re-
+        #  mained from the tuple to make the conversion. For the imaginary part, i got the module of it with the abs()
+        #  function. Both values were converted to np.uint8 before returning.
         str_val = str(window_freq[center_pos_x][center_pos_y])
         if '+' in str_val:
             amplitude, phase = str_val.split("+")

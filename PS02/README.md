@@ -76,4 +76,26 @@ for r = 1 than for r < 1.
 
 ### Formulation 03
 
-Formulation 3 was about edge detection, and comparing how amplitude and phase values
+Formulation 3 was about edge detection, and comparing how amplitude and phase values perform with relation
+to edge highlighting. I had some issues understanding this formulation, regarding what I actually had to do.
+The fact that I had to have two operators caused some confusion, and I had some doubts regarding what pixel
+from the window Wp I had to get to set the values for images M and P.
+
+For the local operator, I used the same algorithm for sliding windows as in Formulation One. Then, for each
+window Wp, I calculated the 2D DFT and shifted the origin to the center of the window with the function
+`np.fft.fftshift`. In the following, I got the pixel value at the center of Wp and used it's amplitude
+for image M and it's phase for image P, which i called `lenna_amplitude` and `lenna_phase`, respectively.
+
+At last, I used OpenCV's `Canny()` function as a base of comparison, to see how the amplitude and phase
+values fared compared to an algorithm that is really, really good at edge detecting. Maybe because the
+center of the frequency window was shifted, the resulting image P was simply a black window because all
+phase values were 0. But image M actually didn't do too bad. Although it's very noisy and a bit confusing
+to look at, we can see that the edges of this image are indeed highlighted, and seem to match a lot of 
+the edges detected by Canny with the threshold values of 50 (for the lower threshold) and 150 (for the 
+higher threshold).
+
+Because of time limitations, I couldn't do the quantitative check to compare the edges detected by Canny
+and the edges highlighted by the amplitude values. Nevertheless, with the image below we can observe
+that the results were pretty close.
+
+![Algorithm comparison](result_imgs/n_3.png)
