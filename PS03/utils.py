@@ -1,6 +1,7 @@
 import cmath
 import math
 import sys
+from random import randint
 from typing import Tuple
 
 from matplotlib import pyplot as plt
@@ -15,10 +16,21 @@ class Utils:
 
     @staticmethod
     def load_image(filename: str, grayscale=None):
-        img = cv.imread(f'../imgs/{filename}', grayscale)
-        if img is None:
-            sys.exit('A imagem não carregou corretamente')
-        return img
+        return cv.imread(f'{filename}', grayscale)
+
+    @staticmethod
+    def load_random_image(filepath: str, grayscale=None):
+        """
+        Gets a random image from the directory passed as a parameter
+        :param filepath: directory with the images
+        :param grayscale: indicates if the image should be returned as a grayscale
+        :return: random image
+        """
+        from os import listdir
+        from os.path import isfile, join
+        images = [f for f in listdir(filepath) if isfile(join(filepath, f))]
+        random_index = randint(0, len(images)-1)  # randint is inclusive on the latter index, which could cause index errors
+        return cv.imread(f'{filepath}/{images[random_index]}', grayscale)
 
     @staticmethod
     def Q(r, h):
