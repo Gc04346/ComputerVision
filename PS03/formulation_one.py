@@ -1,6 +1,6 @@
 import numpy as np
 
-from utils import Utils, G_MAX, SigmaFilter, GRAYSCALE_IMAGE
+from utils import Utils, G_MAX, GRAYSCALE_IMAGE
 import cv2 as cv
 
 
@@ -13,11 +13,15 @@ class FormulationOne:
         """
         image = Utils.load_image(filepath)
         if image is None:
+            if filepath is None:
+                print('No filepath was provided. We\'ll get a random image for you...')
+            else:
+                print('The filepath provided was invalid. We\'ll get a random image for you instead.')
             image = Utils.load_random_image('../imgs/good_for_binarization')
         self.image = image
 
-    def get_image(self):
-        return self.image
-
-    def get_image_shape(self):
-        return self.image.shape
+    def binarize_image(self, threshold=None):
+        t, binary_img = Utils.thresholding_operation(self.image, threshold)
+        cv.imshow(f'Resulting image for threshold T={t}', binary_img)
+        cv.waitKey(0)
+        cv.destroyAllWindows()
