@@ -31,7 +31,7 @@ was stated above.
 We can see that, for threshold value of 130, we can see a lot of details such as the open mouth of the boy on the left,
 the sticks with meat on the grill, the grill itself, and even some hair on the heads of the boys.
 
-A specific threshold value can be provided on the `FormulationOne.binarize_image()` method. If no value is provided, the
+A specific threshold value can be provided when initialising `FormulationOne` object. If no value is provided, the
 program will get a random one varying from 1 to G_MAX (255, in this case).
 
 ### Formulation 03
