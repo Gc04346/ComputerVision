@@ -13,6 +13,6 @@ parser.add_argument("-f", "--file", help="Path to the input image")
 args = parser.parse_args()
 
 # f_one = FormulationOne(args.file, 130)
-f_one = FormulationOne('../imgs/good_for_binarization/chrome.png', 210)
-# f_one.show_binary_image()
+f_one = FormulationOne('../imgs/good_for_binarization/friends.png', 130)
 f_one.execute()
+# f_one.show_binary_image()

@@ -1,10 +1,4 @@
-import cmath
-import math
-import sys
 from random import randint
-from typing import Tuple
-
-from matplotlib import pyplot as plt
 import cv2 as cv
 import numpy as np
 
@@ -14,6 +8,7 @@ BLACK = 0
 WHITE = 255
 FOUR_ADJACENCY = 4
 EIGHT_ADJACENCY = 8
+
 
 class Utils:
 
@@ -110,16 +105,3 @@ class Utils:
                         print(f'We have visited {len(visited_pixels)} so far.')
                 except IndexError:
                     pass
-
-    @staticmethod
-    def sliding_window(image, step, window_size):
-        """
-        Sliding windows algorithm based on the algorithm by Chanran Kim at: https://stackoverflow.com/questions/61051120/sliding-window-on-a-python-image
-        :param image: Image I
-        :param step: defines pixel step. 1 indicates a pixel by pixel sliding window
-        :param window_size: size of the window. send 2k+1
-        :return: windows one by one with yield
-        """
-        for y in range(0, image.shape[0], step):
-            for x in range(0, image.shape[1], step):
-                yield x, y, image[y:y + window_size[1], x:x + window_size[0]]

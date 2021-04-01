@@ -28,14 +28,12 @@ class FormulationOne:
 
     def execute(self):
         while True:
-            # input_option = input('Select one of the following:\n(1) Counting Components;\n(2) Geometric Features of a Selected Component;\n(3) Exit.\nSelected option: ')
-            input_option = str(1)
+            input_option = input('Select one of the following:\n(1) Counting Components;\n(2) Geometric Features of a Selected Component;\n(3) Exit.\nSelected option: ')
             if input_option == str(1):
-                # recursive_adjacency = input('Now, please select (4), for black<white or (8), for white<black.\nSelected option: ')
-                adjacency = 4
+                adjacency = input('Now, please select (4), for black<white or (8), for white<black.\nSelected option: ')
                 self.count_components(adjacency)
             elif input_option == str(2):
-                print('you are so beautiful')
+                print('This feature is not yet implemented. Sorry!\n')
             elif input_option == str(3):
                 print('\nSuspending program execution. See you!\n')
                 break
@@ -48,16 +46,20 @@ class FormulationOne:
         number_of_regions: int = 0
         img = self.binary_image
         shape = img.shape
+        # num_labels, number_of_regions, stats, centroids = cv.connectedComponentsWithStats(img, adjacency)
+        # print(num_labels)
+        # print(stats)
+        # print(centroids)
         print(f'Starting counting algorithm. We will visit {shape[0]*shape[1]} pixels.')
         for x, values in enumerate(img):
             for y, value in enumerate(values):
                 if (x, y) in visited_pixels:
                     continue
-                # Utils.recursive_adjacency(img, (x, y), visited_pixels, int(adjacency))
-                Utils.regular_adjacency(img, (x, y), visited_pixels, int(adjacency))
+                Utils.recursive_adjacency(img, (x, y), visited_pixels, int(adjacency))
+                # Utils.regular_adjacency(img, (x, y), visited_pixels, int(adjacency))
                 number_of_regions += 1
 
-        print(f'We have {number_of_regions} black regions.')
+        print(f'We have {number_of_regions} components.')
         print(f'The algorithm has visited {len(visited_pixels)} pixels in total.')
 
     def show_binary_image(self):

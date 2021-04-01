@@ -19,7 +19,7 @@ e.g.: `python main.py -f ../imgs/good_for_binarization/friends.png`. If an inval
 at all, the program gets a random image from the `imgs/good_for_binarization` directory.
 
 For the binarization of the image, a simple thresholding algorithm was used. Through empirical tests, it was concluded
-that, for the test images, the optimal threshold value was between 110 and 150. Values that were too low resulted in a
+that, for most of the test images, the optimal threshold value was between 110 and 150. Values that were too low resulted in a
 mostly black picture, and values above 200 resulted in a picture too white, and both options weren't great for detecting
 edges on the next steps. The images below show the image `friends.png` with different threshold values, illustrating what
 was stated above.
@@ -34,6 +34,13 @@ the sticks with meat on the grill, the grill itself, and even some hair on the h
 A specific threshold value can be provided when initialising `FormulationOne` object. If no value is provided, the
 program will get a random one varying from 1 to G_MAX (255, in this case).
 
-### Formulation 03
+The algorithm for counting components was a real challenge. I tried to make a recursive algorithm, but even with a small
+sized image (225x225) the stack kept breaking. I tried tweaking some stuff like adding some conditionals for the recursion
+and taking the larger for loops out of it, but nothing seemed to be enough. Then, I tried writing a non-recursive algorithm,
+but I wasn't able to. Utterly I tried working with OpenCV's `connectedComponentsWithStats` method, but it was really
+confusing and didn't seem to work, providing incorrect numbers and values. 
 
+Most tests were made with the image `chrome.png`, because of it's smaller size. For this specific image, the optimal 
+threshold value was 210, producing the following binary image:
 
+![Threshold value of 210](resulting_imgs/f_one/chrome_binary.png)
