@@ -34,7 +34,7 @@ class FormulationOne:
         y = np.arange(0, self.frame1.shape[0], 1)
         fig, ax = plt.subplots()
         q = ax.quiver(x, y, u, v)
-        ax.quiverkey(q, X=0.5, Y=1.1, U=1, label='Velocidade', labelpos='E')
+        ax.quiverkey(q, X=0.5, Y=1.1, U=1, label='Velocity', labelpos='E')
         plt.show()
 
     def plot_movement_images(self, u, v):
