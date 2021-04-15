@@ -81,6 +81,9 @@ It was noted that the best results with `lenna.png` were achieved when segmentin
 SR value of 19 and L value of 2, so these values were used for testing with the images `baboon.png` and
 `tulips.png` also. The results can be seen below:
 
+Lenna
+![Lenna Segmented](result_imgs/f02/lenna_12_19_2.png)
+
 Baboon
 ![Baboon Segmented](result_imgs/f02/baboon.png)
 
@@ -88,7 +91,7 @@ Tulips field
 ![Tulips Segmented](result_imgs/f02/tulips.png)
 
 The segmentation algorithm was also used on the `spring.png` image, as requested by the formulation. The
-result below was obtained using an SP value of 12, SR value of 19 and L value of 2.
+result below was obtained using an SP value of 15, SR value of 25 and L value of 3.
 ![Spring Segmented](result_imgs/f02/spring.png)
 
 After all the tests, it was noted the following:
@@ -101,6 +104,16 @@ greater tone range for the colors on the windows are normalized, thus leading to
   variance.
 - The L value indicates how many levels the image pyramid will have. The algorithm in `cv.pyrMeanSheftFiltering`
 probably applies the Mean Shift on the top image of the pyramid first, leading to some quite bizarre results
-  when a big value (6, for example) is used. It can be seen in the image below that the bottom right corner
+  when a big value (6, for example) is used. It can be seen in the image below that the rightmost corner
   of the image is totally blurred, and most of its information is lost (not to say all of it).
-![Lenna Segmented](result_imgs/f02/lenna_6_pyramid.png)
+![Lenna Super Segmented](result_imgs/f02/lenna_12_19_6.png)
+  
+After playing around quite a bit with OpenCV's `floodFill` function, I was not able to obtain a satisfying
+result with the image segments differently coloured. The result I kept getting was something like the following:
+
+![Coloured Result](result_imgs/f02/coloured.png)
+
+I didn't quite understand what was wrong with my code, but because this felt like a mere detail, I didn't 
+want to spend much in it and decided to skip the colouring phase.
+
+### Formulation 3
