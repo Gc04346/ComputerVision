@@ -117,3 +117,22 @@ I didn't quite understand what was wrong with my code, but because this felt lik
 want to spend much in it and decided to skip the colouring phase.
 
 ### Formulation 3
+
+Formulation three requested the use of any lines detection algorithm to be applied on checkerboard images,
+to observe the impact of radial lens distortion on images. OpenCV's `HoughLinesP` function was used in
+this formulation. To simplify the efforts on this formulation, the same checkerboard images for camera
+calibration used on the textbook were used here. Those can be found at [this link.](http://www.vision.caltech.edu/bouguetj/calib_doc/htmls/calib_example/index.html)
+All 20 images were submitted to the algorithm, and the results can be found at `PS04/result_imgs/f03`. To
+illustrate the results, only two images were selected, and those can be seen below.
+
+![Checkerboard 11](result_imgs/f03/11.png)
+![Checkerboard 15](result_imgs/f03/15.png)
+
+From these two images we can quite clearly notice that the corner detection is affected by the camera's
+radial lens distortion. The closer the object is to the camera, the more the lines seem more like a curve
+than a straight line, thus evidencing the distortion. Such distortion made it so that the lines detection
+algorithm drew more than one green overline on a single checkerboard line, as we can see in the bottom
+result image's top checkerboard line.
+
+We can conclude that, the further the object is from the camera, the less distortion we have due to the
+radial lens.
