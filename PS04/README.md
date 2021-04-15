@@ -27,28 +27,34 @@ After all the specified iterations are run, the program will plot the U vector i
 the movement image in RGB domain, and the graph for each pixel's movement. Plotting the RGB image was
 specially challenging, and I didn't achieve the result I expected. The resulting image, as will be shown
 below, has a black background, making it difficult to distinguish shapes and validate the algorithm's
-assertiveness.
+assertiveness. The image below was obtained using 40 iterations and lambda of 0.05.
 
-IMAGEM RGB
+![RGB resulting image](result_imgs/movement_image.png)
 
 After each iteration, the algorithm prints on the command line the error between iterations, calculating
-the difference between the U and V vectors on the current iteration and past one.
+the mean difference between the U and V vectors on the current iteration and past one.
 Analysing the U and V plots for 2, 5 and 10 iterations, we can observe that the results are notably
 different, but for some reason, the difference mentioned above was always zero after the first iteration.
 
-IMAGENS DE U E V PARA 2, 5 E 10 ITERACOES
-IMAGEM DO TERMINAL MOSTRANDO VALORES 0 DE DIFERENCA ENTRE ITERACOES
+U and V vectors after 2 iterations:
+![UV_2](result_imgs/uv_2.png)
+U and V vectors after 5 iterations:
+![UV_5](result_imgs/uv_5.png)
+U and V vectors after 10 iterations:
+![UV_10](result_imgs/uv_10.png)
+Command line printing the mean difference after each iteration:
+![Terminal](result_imgs/terminal.png)
 
 In order to obtain Ix, Iy and It, the following masks were used:
 
-COLOCAR MATRIZES
+![Masks](result_imgs/masks.png)
 
 The following mask was used as the Laplacian to obtain Uav and Vav values for each pixel of the U and V
 matrices each iteration:
 
-COLOCAR MATRIZ DE LAPLACE
+![Laplacian Matrix](result_imgs/laplacian.png)
 
 The image below is the graph that illustrates the movement vector for each pixel of the two first frames
 of the video `vids/taxi.mpg`, using 40 iterations and lambda value of 0.05.
 
-IAMGEM DO GRAFICO
+![RGB resulting image](result_imgs/pixel_movements.png)

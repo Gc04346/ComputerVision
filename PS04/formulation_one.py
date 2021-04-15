@@ -34,7 +34,7 @@ class FormulationOne:
         y = np.arange(0, self.frame1.shape[0], 1)
         fig, ax = plt.subplots()
         q = ax.quiver(x, y, u, v)
-        ax.quiverkey(q, X=0.5, Y=1.1, U=1, label='Velocity', labelpos='E')
+        ax.quiverkey(q, X=0.5, Y=1.1, U=1, label='Pixel Movements', labelpos='E')
         plt.show()
 
     def plot_movement_images(self, u, v):
@@ -99,7 +99,8 @@ class FormulationOne:
                         v1[x][y] = vav - fy[x][y] * p_d
                     except IndexError:
                         continue
-            print(u1 == u)
+            print(f'Mean change in U vector: {sum(sum(u1-u))/(u.shape[0]*u.shape[1])}')
+            print(f'Mean change in V vector: {sum(sum(v1-v))/(u.shape[0]*u.shape[1])}')
             u = u1
             v = v1
         return u, v
