@@ -23,6 +23,10 @@ The value used for lambda through the tests was of 0.05. The user can also provi
 the `-l` parameter on the command line. To test the algorithm, the famous "Hamburg Taxi" video was used,
 and the tests were made using only the video's first two frames.
 
+To write this formulation's code, [this video](https://www.youtube.com/watch?v=DkYpi8_AyoI&t=2s) was 
+used as a theoretical reference to understand the algorithm itself, and the code by [Pratik Jain](https://drive.google.com/file/d/1uGtpzcTHRNswjazBt0F0CSDzPmu8zEat/view)
+(the same author of the video), written in MatLab, was used as reference to write my own code, in Python.
+
 After all the specified iterations are run, the program will plot the U vector image, the V vector image,
 the movement image in RGB domain, and the graph for each pixel's movement. Plotting the RGB image was
 specially challenging, and I didn't achieve the result I expected. The resulting image, as will be shown
@@ -58,3 +62,45 @@ The image below is the graph that illustrates the movement vector for each pixel
 of the video `vids/taxi.mpg`, using 40 iterations and lambda value of 0.05.
 
 ![RGB resulting image](result_imgs/pixel_movements.png)
+
+
+### Formulation 02
+
+Formulation 2 had us change the parameters in `cv.pyrMeanSheftFiltering` function, and critically analyze
+the impact of each parameter on the final result of an image segmentation. The following tests were made
+using the image `imgs/lenna.png`:
+ - Fixed L and SR parameters, applying the algorithm for SP values of 1, 12 and 50;
+ - Fixed L and SP parameters, applying the algorithm for SR values of 1, 19 and 50;
+ - Fixed SP and SR values, applying the algorithm for L values of 1, 2, 4, and 6;
+ - With an L value of 6, apply the algorithm for SP and SR values of (1, 50) and (50, 1).
+
+The resulting images can be found at `PS04/result_imgs/f02`. They were omitted from this report simply to
+reduce the report size.
+
+It was noted that the best results with `lenna.png` were achieved when segmenting it with SP value of 12,
+SR value of 19 and L value of 2, so these values were used for testing with the images `baboon.png` and
+`tulips.png` also. The results can be seen below:
+
+Baboon
+![Baboon Segmented](result_imgs/f02/baboon.png)
+
+Tulips field
+![Tulips Segmented](result_imgs/f02/tulips.png)
+
+The segmentation algorithm was also used on the `spring.png` image, as requested by the formulation. The
+result below was obtained using an SP value of 12, SR value of 19 and L value of 2.
+![Spring Segmented](result_imgs/f02/spring.png)
+
+After all the tests, it was noted the following:
+ - The SP parameter deals with the feature windows sizes. The greater the values, the bigger the feature
+windows, which leads to a bigger area being analysed by each window. The increase in this parameter's value
+   impacts directly on the computational performance, such that testing with values over 50 showed a really
+   slow execution.
+- The SR parameter deals with the color range that is to be normalized. When this range is increased, a
+greater tone range for the colors on the windows are normalized, thus leading to an image with less color
+  variance.
+- The L value indicates how many levels the image pyramid will have. The algorithm in `cv.pyrMeanSheftFiltering`
+probably applies the Mean Shift on the top image of the pyramid first, leading to some quite bizarre results
+  when a big value (6, for example) is used. It can be seen in the image below that the bottom right corner
+  of the image is totally blurred, and most of its information is lost (not to say all of it).
+![Lenna Segmented](result_imgs/f02/lenna_6_pyramid.png)
